@@ -27,6 +27,4 @@ fn value_in_cents(coin: Coin) -> u8 {
     }
 }
 
-fn main() {
-    println!("{}", value_in_cents(Coin::Quarter(UsState::Alaska)));
-}
+fn main() {}
