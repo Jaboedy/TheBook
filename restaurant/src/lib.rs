@@ -1,4 +1,26 @@
+// Example of brining two types with the same name into scope using "as"
+use std::fmt::Result;
+use std::io::Result as IoResult;
+
+// Bringing in 2 items from the same crate/module without bringing in the whole crate/module
+use std::{cmp::Ordering, io};
+
+// Bringing an item and the module it belongs to into scope at the same time (commented out to prevent errors due to previously importing io)
+// use std::io::{self, Write};
+
+// Glob operator, bring all public items into scope
+use std::collections::*;
+
+fn func1() -> Option<Result> {
+    None
+}
+
+fn func2() -> Option<IoResult<()>> {
+    None
+}
+
 pub fn add(left: u64, right: u64) -> u64 {
+    println!("Left: {left}\nRight: {right}");
     left + right
 }
 
@@ -10,22 +32,6 @@ mod tests {
     fn it_works() {
         let result = add(2, 2);
         assert_eq!(result, 4);
-    }
-}
-
-mod front_of_house {
-    pub mod hosting {
-        pub fn add_to_waitlist() {}
-
-        fn seat_at_table() {}
-    }
-
-    mod serving {
-        fn take_order() {}
-
-        fn serve_order() {}
-
-        fn take_payment() {}
     }
 }
 
@@ -63,7 +69,9 @@ mod back_of_house {
 // Adding pub to the front would make it so users of this
 // don't also have to specify the full path, and can use
 // restaurant::hosting::add_to_waitlist() instead
-use crate::front_of_house::hosting;
+mod front_of_house;
+
+pub use crate::front_of_house::hosting;
 
 pub fn eat_at_restaurant() {
     // Order a breakfast in the summer with Rye toast
