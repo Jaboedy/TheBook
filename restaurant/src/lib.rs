@@ -12,6 +12,7 @@ use std::{cmp::Ordering, io};
 use std::collections::*;
 
 fn func1() -> Option<Result> {
+    // These variables are only here to get rid of lint warnings. Ignore them
     let _equal = Ordering::Equal;
     let _result = io::Result::Ok(());
     let _map: HashMap<String, i32> = HashMap::new();
