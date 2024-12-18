@@ -12,6 +12,9 @@ use std::{cmp::Ordering, io};
 use std::collections::*;
 
 fn func1() -> Option<Result> {
+    let _equal = Ordering::Equal;
+    let _result = io::Result::Ok(());
+    let _map: HashMap<String, i32> = HashMap::new();
     None
 }
 
@@ -20,6 +23,8 @@ fn func2() -> Option<IoResult<()>> {
 }
 
 pub fn add(left: u64, right: u64) -> u64 {
+    func1();
+    func2();
     println!("Left: {left}\nRight: {right}");
     left + right
 }
@@ -43,14 +48,15 @@ mod back_of_house {
 
     pub struct Breakfast {
         pub toast: String,
-        seasonal_fruit: String,
+        _seasonal_fruit: String,
     }
 
     impl Breakfast {
         pub fn summer(toast: &str) -> Breakfast {
+            fix_incorrect_order();
             Breakfast {
                 toast: String::from(toast),
-                seasonal_fruit: String::from("peaches"),
+                _seasonal_fruit: String::from("peaches"),
             }
         }
     }
@@ -78,10 +84,11 @@ pub fn eat_at_restaurant() {
     let mut meal = back_of_house::Breakfast::summer("Rye");
     meal.toast = String::from("Wheat");
     println!("I'd like {} toast please", meal.toast);
-    let order1 = back_of_house::Appetizer::Soup;
-    let order2 = back_of_house::Appetizer::Salad;
+    let _order1 = back_of_house::Appetizer::Soup;
+    let _order2 = back_of_house::Appetizer::Salad;
 
     hosting::add_to_waitlist();
+    deliver_order();
 }
 
 fn deliver_order() {}
