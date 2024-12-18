@@ -157,5 +157,18 @@ fn vectors() {
     ];
 
     row.push(SpreadsheetCell::Int(5));
+    for i in &row {
+        match i {
+            SpreadsheetCell::Int(x) => {
+                println!("{x}");
+            }
+            SpreadsheetCell::Float(x) => {
+                println!("{x}");
+            }
+            SpreadsheetCell::Text(x) => {
+                println!("{x}");
+            }
+        }
+    }
     println!("{row:?}");
 }
