@@ -100,3 +100,10 @@ fn _last_char_of_first_line(text: &str) -> Option<char> {
 // here Box<dyn Error> is a Trait object which is talked
 // about more in another unit, but for now think of it as
 // any type of error
+//
+// When a function returns a Result<(), E> the executable
+// will exit with a value of 0 if main returns Ok(())
+// and a nonzero value if main returns an Err value
+//
+// The main function may return any types that implement
+// the std::process::Termination trait
