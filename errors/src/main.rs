@@ -1,6 +1,6 @@
-use std::error::Error;
 use std::fs::{self, File};
 use std::io::{self, ErrorKind, Read};
+use std::ops::RangeInclusive;
 
 fn main() {
     // To purposely cause a panic
@@ -107,3 +107,25 @@ fn _last_char_of_first_line(text: &str) -> Option<char> {
 //
 // The main function may return any types that implement
 // the std::process::Termination trait
+//
+// Remember the guessing game from earlier units
+// if it were absolutely essential for a guess
+// to fall within 1 and 100 we could do the following
+
+pub struct Guess {
+    value: i32,
+}
+
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if !RangeInclusive::contains(&RangeInclusive::new(1, 100), &value) {
+            panic!("Guess value must be between 1 and 100, got {value}");
+        }
+
+        Guess { value }
+    }
+
+    pub fn value(&self) -> i32 {
+        self.value
+    }
+}
