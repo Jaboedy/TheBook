@@ -29,6 +29,37 @@ fn largest<T: std::cmp::PartialOrd>(list: &[T]) -> &T {
     largest
 }
 
+// Lifetime Elision Examples
+struct _ImportantExcerpt<'a> {
+    part: &'a str,
+}
+
+// explicit elision
+impl _ImportantExcerpt<'_> {
+    fn _level(&self) -> i32 {
+        3
+    }
+
+    // dont need to specify lifetimes because of &self being used
+    fn _announce_and_return_part(&self, announcement: &str) -> &str {
+        println!("Attention please: {announcement}");
+        self.part
+    }
+}
+
+// Generics, Traits, and Lifetimes Together
+fn _longest_with_an_announcement<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
+where
+    T: Display,
+{
+    println!("Announcement! {ann}");
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+
 // We can also use generics in struct definitions
 struct Point<T> {
     _x: T,
